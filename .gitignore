@@ -37,3 +37,10 @@ output/solutions
 solutions/RSync/target/
 solutions/RSync/project/target/
 solutions/RSync/project/project/target/
+
+**.project**
+**.prefs**
+**.classpath**
+**.tt**
+**log4j2.xml**
+.vscode/settings.json**
