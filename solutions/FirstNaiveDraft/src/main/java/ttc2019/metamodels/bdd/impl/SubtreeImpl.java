@@ -4,12 +4,9 @@ package ttc2019.metamodels.bdd.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import ttc2019.metamodels.bdd.BDDPackage;
 import ttc2019.metamodels.bdd.InputPort;
 import ttc2019.metamodels.bdd.Subtree;
@@ -23,9 +20,9 @@ import ttc2019.metamodels.bdd.Tree;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.impl.SubtreeImpl#getPort <em>Port</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.SubtreeImpl#getTreeForZero <em>Tree For Zero</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.SubtreeImpl#getTreeForOne <em>Tree For One</em>}</li>
+ *   <li>{@link SubtreeImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link SubtreeImpl#getTreeForZero <em>Tree For Zero</em>}</li>
+ *   <li>{@link SubtreeImpl#getTreeForOne <em>Tree For One</em>}</li>
  * </ul>
  *
  * @generated

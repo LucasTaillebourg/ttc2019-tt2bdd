@@ -4,15 +4,11 @@ package ttc2019.metamodels.bdd.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import ttc2019.metamodels.bdd.BDD;
 import ttc2019.metamodels.bdd.BDDPackage;
 import ttc2019.metamodels.bdd.Port;
@@ -25,8 +21,8 @@ import ttc2019.metamodels.bdd.Port;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.impl.PortImpl#getName <em>Name</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.PortImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link PortImpl#getName <em>Name</em>}</li>
+ *   <li>{@link PortImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  *
  * @generated

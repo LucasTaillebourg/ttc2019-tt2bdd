@@ -4,15 +4,11 @@ package ttc2019.metamodels.bdd.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import ttc2019.metamodels.bdd.BDD;
 import ttc2019.metamodels.bdd.BDDPackage;
 import ttc2019.metamodels.bdd.Subtree;
@@ -26,9 +22,9 @@ import ttc2019.metamodels.bdd.Tree;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.impl.TreeImpl#getOwnerBDD <em>Owner BDD</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.TreeImpl#getOwnerSubtreeForZero <em>Owner Subtree For Zero</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.TreeImpl#getOwnerSubtreeForOne <em>Owner Subtree For One</em>}</li>
+ *   <li>{@link TreeImpl#getOwnerBDD <em>Owner BDD</em>}</li>
+ *   <li>{@link TreeImpl#getOwnerSubtreeForZero <em>Owner Subtree For Zero</em>}</li>
+ *   <li>{@link TreeImpl#getOwnerSubtreeForOne <em>Owner Subtree For One</em>}</li>
  * </ul>
  *
  * @generated

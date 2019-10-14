@@ -2,26 +2,21 @@
  */
 package ttc2019.metamodels.bdd.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import ttc2019.metamodels.bdd.BDD;
 import ttc2019.metamodels.bdd.BDDPackage;
 import ttc2019.metamodels.bdd.Port;
 import ttc2019.metamodels.bdd.Tree;
+
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,9 +26,9 @@ import ttc2019.metamodels.bdd.Tree;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.impl.BDDImpl#getName <em>Name</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.BDDImpl#getPorts <em>Ports</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.BDDImpl#getTree <em>Tree</em>}</li>
+ *   <li>{@link BDDImpl#getName <em>Name</em>}</li>
+ *   <li>{@link BDDImpl#getPorts <em>Ports</em>}</li>
+ *   <li>{@link BDDImpl#getTree <em>Tree</em>}</li>
  * </ul>
  *
  * @generated

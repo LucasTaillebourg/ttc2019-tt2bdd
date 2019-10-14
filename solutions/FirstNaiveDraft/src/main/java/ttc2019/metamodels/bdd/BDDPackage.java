@@ -2,10 +2,12 @@
  */
 package ttc2019.metamodels.bdd;
 
+import metamodels.bdd.impl.*;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import ttc2019.metamodels.bdd.impl.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +21,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see ttc2019.metamodels.bdd.BDDFactory
+ * @see BDDFactory
  * @model kind="package"
  * @generated
  */
@@ -57,11 +59,11 @@ public interface BDDPackage extends EPackage {
 	BDDPackage eINSTANCE = ttc2019.metamodels.bdd.impl.BDDPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.BDDImpl <em>BDD</em>}' class.
+	 * The meta object id for the '{@link BDDImpl <em>BDD</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.BDDImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getBDD()
+	 * @see BDDImpl
+	 * @see BDDPackageImpl#getBDD()
 	 * @generated
 	 */
 	int BDD = 0;
@@ -112,11 +114,11 @@ public interface BDDPackage extends EPackage {
 	int BDD_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.PortImpl <em>Port</em>}' class.
+	 * The meta object id for the '{@link PortImpl <em>Port</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.PortImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getPort()
+	 * @see PortImpl
+	 * @see BDDPackageImpl#getPort()
 	 * @generated
 	 */
 	int PORT = 1;
@@ -158,11 +160,11 @@ public interface BDDPackage extends EPackage {
 	int PORT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.InputPortImpl <em>Input Port</em>}' class.
+	 * The meta object id for the '{@link InputPortImpl <em>Input Port</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.InputPortImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getInputPort()
+	 * @see InputPortImpl
+	 * @see BDDPackageImpl#getInputPort()
 	 * @generated
 	 */
 	int INPUT_PORT = 2;
@@ -213,11 +215,11 @@ public interface BDDPackage extends EPackage {
 	int INPUT_PORT_OPERATION_COUNT = PORT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.OutputPortImpl <em>Output Port</em>}' class.
+	 * The meta object id for the '{@link OutputPortImpl <em>Output Port</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.OutputPortImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getOutputPort()
+	 * @see OutputPortImpl
+	 * @see BDDPackageImpl#getOutputPort()
 	 * @generated
 	 */
 	int OUTPUT_PORT = 3;
@@ -268,11 +270,11 @@ public interface BDDPackage extends EPackage {
 	int OUTPUT_PORT_OPERATION_COUNT = PORT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.TreeImpl <em>Tree</em>}' class.
+	 * The meta object id for the '{@link TreeImpl <em>Tree</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.TreeImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getTree()
+	 * @see TreeImpl
+	 * @see BDDPackageImpl#getTree()
 	 * @generated
 	 */
 	int TREE = 4;
@@ -323,11 +325,11 @@ public interface BDDPackage extends EPackage {
 	int TREE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.LeafImpl <em>Leaf</em>}' class.
+	 * The meta object id for the '{@link LeafImpl <em>Leaf</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.LeafImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getLeaf()
+	 * @see LeafImpl
+	 * @see BDDPackageImpl#getLeaf()
 	 * @generated
 	 */
 	int LEAF = 5;
@@ -387,11 +389,11 @@ public interface BDDPackage extends EPackage {
 	int LEAF_OPERATION_COUNT = TREE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.AssignmentImpl <em>Assignment</em>}' class.
+	 * The meta object id for the '{@link AssignmentImpl <em>Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.AssignmentImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getAssignment()
+	 * @see AssignmentImpl
+	 * @see BDDPackageImpl#getAssignment()
 	 * @generated
 	 */
 	int ASSIGNMENT = 6;
@@ -442,11 +444,11 @@ public interface BDDPackage extends EPackage {
 	int ASSIGNMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ttc2019.metamodels.bdd.impl.SubtreeImpl <em>Subtree</em>}' class.
+	 * The meta object id for the '{@link SubtreeImpl <em>Subtree</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ttc2019.metamodels.bdd.impl.SubtreeImpl
-	 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getSubtree()
+	 * @see SubtreeImpl
+	 * @see BDDPackageImpl#getSubtree()
 	 * @generated
 	 */
 	int SUBTREE = 7;
@@ -568,224 +570,224 @@ public interface BDDPackage extends EPackage {
 	EReference getBDD_Tree();
 
 	/**
-	 * Returns the meta object for class '{@link ttc2019.metamodels.bdd.Port <em>Port</em>}'.
+	 * Returns the meta object for class '{@link Port <em>Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Port</em>'.
-	 * @see ttc2019.metamodels.bdd.Port
+	 * @see Port
 	 * @generated
 	 */
 	EClass getPort();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ttc2019.metamodels.bdd.Port#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link Port#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see ttc2019.metamodels.bdd.Port#getName()
+	 * @see Port#getName()
 	 * @see #getPort()
 	 * @generated
 	 */
 	EAttribute getPort_Name();
 
 	/**
-	 * Returns the meta object for the container reference '{@link ttc2019.metamodels.bdd.Port#getOwner <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link Port#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owner</em>'.
-	 * @see ttc2019.metamodels.bdd.Port#getOwner()
+	 * @see Port#getOwner()
 	 * @see #getPort()
 	 * @generated
 	 */
 	EReference getPort_Owner();
 
 	/**
-	 * Returns the meta object for class '{@link ttc2019.metamodels.bdd.InputPort <em>Input Port</em>}'.
+	 * Returns the meta object for class '{@link InputPort <em>Input Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Input Port</em>'.
-	 * @see ttc2019.metamodels.bdd.InputPort
+	 * @see InputPort
 	 * @generated
 	 */
 	EClass getInputPort();
 
 	/**
-	 * Returns the meta object for the reference list '{@link ttc2019.metamodels.bdd.InputPort#getSubtrees <em>Subtrees</em>}'.
+	 * Returns the meta object for the reference list '{@link InputPort#getSubtrees <em>Subtrees</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Subtrees</em>'.
-	 * @see ttc2019.metamodels.bdd.InputPort#getSubtrees()
+	 * @see InputPort#getSubtrees()
 	 * @see #getInputPort()
 	 * @generated
 	 */
 	EReference getInputPort_Subtrees();
 
 	/**
-	 * Returns the meta object for class '{@link ttc2019.metamodels.bdd.OutputPort <em>Output Port</em>}'.
+	 * Returns the meta object for class '{@link OutputPort <em>Output Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Output Port</em>'.
-	 * @see ttc2019.metamodels.bdd.OutputPort
+	 * @see OutputPort
 	 * @generated
 	 */
 	EClass getOutputPort();
 
 	/**
-	 * Returns the meta object for the reference list '{@link ttc2019.metamodels.bdd.OutputPort#getAssignments <em>Assignments</em>}'.
+	 * Returns the meta object for the reference list '{@link OutputPort#getAssignments <em>Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Assignments</em>'.
-	 * @see ttc2019.metamodels.bdd.OutputPort#getAssignments()
+	 * @see OutputPort#getAssignments()
 	 * @see #getOutputPort()
 	 * @generated
 	 */
 	EReference getOutputPort_Assignments();
 
 	/**
-	 * Returns the meta object for class '{@link ttc2019.metamodels.bdd.Tree <em>Tree</em>}'.
+	 * Returns the meta object for class '{@link Tree <em>Tree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Tree</em>'.
-	 * @see ttc2019.metamodels.bdd.Tree
+	 * @see Tree
 	 * @generated
 	 */
 	EClass getTree();
 
 	/**
-	 * Returns the meta object for the container reference '{@link ttc2019.metamodels.bdd.Tree#getOwnerBDD <em>Owner BDD</em>}'.
+	 * Returns the meta object for the container reference '{@link Tree#getOwnerBDD <em>Owner BDD</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owner BDD</em>'.
-	 * @see ttc2019.metamodels.bdd.Tree#getOwnerBDD()
+	 * @see Tree#getOwnerBDD()
 	 * @see #getTree()
 	 * @generated
 	 */
 	EReference getTree_OwnerBDD();
 
 	/**
-	 * Returns the meta object for the container reference '{@link ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForZero <em>Owner Subtree For Zero</em>}'.
+	 * Returns the meta object for the container reference '{@link Tree#getOwnerSubtreeForZero <em>Owner Subtree For Zero</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owner Subtree For Zero</em>'.
-	 * @see ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForZero()
+	 * @see Tree#getOwnerSubtreeForZero()
 	 * @see #getTree()
 	 * @generated
 	 */
 	EReference getTree_OwnerSubtreeForZero();
 
 	/**
-	 * Returns the meta object for the container reference '{@link ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForOne <em>Owner Subtree For One</em>}'.
+	 * Returns the meta object for the container reference '{@link Tree#getOwnerSubtreeForOne <em>Owner Subtree For One</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owner Subtree For One</em>'.
-	 * @see ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForOne()
+	 * @see Tree#getOwnerSubtreeForOne()
 	 * @see #getTree()
 	 * @generated
 	 */
 	EReference getTree_OwnerSubtreeForOne();
 
 	/**
-	 * Returns the meta object for class '{@link ttc2019.metamodels.bdd.Leaf <em>Leaf</em>}'.
+	 * Returns the meta object for class '{@link Leaf <em>Leaf</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Leaf</em>'.
-	 * @see ttc2019.metamodels.bdd.Leaf
+	 * @see Leaf
 	 * @generated
 	 */
 	EClass getLeaf();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ttc2019.metamodels.bdd.Leaf#getAssignments <em>Assignments</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Leaf#getAssignments <em>Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Assignments</em>'.
-	 * @see ttc2019.metamodels.bdd.Leaf#getAssignments()
+	 * @see Leaf#getAssignments()
 	 * @see #getLeaf()
 	 * @generated
 	 */
 	EReference getLeaf_Assignments();
 
 	/**
-	 * Returns the meta object for class '{@link ttc2019.metamodels.bdd.Assignment <em>Assignment</em>}'.
+	 * Returns the meta object for class '{@link Assignment <em>Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Assignment</em>'.
-	 * @see ttc2019.metamodels.bdd.Assignment
+	 * @see Assignment
 	 * @generated
 	 */
 	EClass getAssignment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ttc2019.metamodels.bdd.Assignment#isValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link Assignment#isValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see ttc2019.metamodels.bdd.Assignment#isValue()
+	 * @see Assignment#isValue()
 	 * @see #getAssignment()
 	 * @generated
 	 */
 	EAttribute getAssignment_Value();
 
 	/**
-	 * Returns the meta object for the reference '{@link ttc2019.metamodels.bdd.Assignment#getPort <em>Port</em>}'.
+	 * Returns the meta object for the reference '{@link Assignment#getPort <em>Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Port</em>'.
-	 * @see ttc2019.metamodels.bdd.Assignment#getPort()
+	 * @see Assignment#getPort()
 	 * @see #getAssignment()
 	 * @generated
 	 */
 	EReference getAssignment_Port();
 
 	/**
-	 * Returns the meta object for the container reference '{@link ttc2019.metamodels.bdd.Assignment#getOwner <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link Assignment#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Owner</em>'.
-	 * @see ttc2019.metamodels.bdd.Assignment#getOwner()
+	 * @see Assignment#getOwner()
 	 * @see #getAssignment()
 	 * @generated
 	 */
 	EReference getAssignment_Owner();
 
 	/**
-	 * Returns the meta object for class '{@link ttc2019.metamodels.bdd.Subtree <em>Subtree</em>}'.
+	 * Returns the meta object for class '{@link Subtree <em>Subtree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Subtree</em>'.
-	 * @see ttc2019.metamodels.bdd.Subtree
+	 * @see Subtree
 	 * @generated
 	 */
 	EClass getSubtree();
 
 	/**
-	 * Returns the meta object for the reference '{@link ttc2019.metamodels.bdd.Subtree#getPort <em>Port</em>}'.
+	 * Returns the meta object for the reference '{@link Subtree#getPort <em>Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Port</em>'.
-	 * @see ttc2019.metamodels.bdd.Subtree#getPort()
+	 * @see Subtree#getPort()
 	 * @see #getSubtree()
 	 * @generated
 	 */
 	EReference getSubtree_Port();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ttc2019.metamodels.bdd.Subtree#getTreeForZero <em>Tree For Zero</em>}'.
+	 * Returns the meta object for the containment reference '{@link Subtree#getTreeForZero <em>Tree For Zero</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Tree For Zero</em>'.
-	 * @see ttc2019.metamodels.bdd.Subtree#getTreeForZero()
+	 * @see Subtree#getTreeForZero()
 	 * @see #getSubtree()
 	 * @generated
 	 */
 	EReference getSubtree_TreeForZero();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link ttc2019.metamodels.bdd.Subtree#getTreeForOne <em>Tree For One</em>}'.
+	 * Returns the meta object for the containment reference '{@link Subtree#getTreeForOne <em>Tree For One</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Tree For One</em>'.
-	 * @see ttc2019.metamodels.bdd.Subtree#getTreeForOne()
+	 * @see Subtree#getTreeForOne()
 	 * @see #getSubtree()
 	 * @generated
 	 */
@@ -815,11 +817,11 @@ public interface BDDPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.BDDImpl <em>BDD</em>}' class.
+		 * The meta object literal for the '{@link BDDImpl <em>BDD</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.BDDImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getBDD()
+		 * @see BDDImpl
+		 * @see BDDPackageImpl#getBDD()
 		 * @generated
 		 */
 		EClass BDD = eINSTANCE.getBDD();
@@ -849,11 +851,11 @@ public interface BDDPackage extends EPackage {
 		EReference BDD__TREE = eINSTANCE.getBDD_Tree();
 
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.PortImpl <em>Port</em>}' class.
+		 * The meta object literal for the '{@link PortImpl <em>Port</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.PortImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getPort()
+		 * @see PortImpl
+		 * @see BDDPackageImpl#getPort()
 		 * @generated
 		 */
 		EClass PORT = eINSTANCE.getPort();
@@ -875,11 +877,11 @@ public interface BDDPackage extends EPackage {
 		EReference PORT__OWNER = eINSTANCE.getPort_Owner();
 
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.InputPortImpl <em>Input Port</em>}' class.
+		 * The meta object literal for the '{@link InputPortImpl <em>Input Port</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.InputPortImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getInputPort()
+		 * @see InputPortImpl
+		 * @see BDDPackageImpl#getInputPort()
 		 * @generated
 		 */
 		EClass INPUT_PORT = eINSTANCE.getInputPort();
@@ -893,11 +895,11 @@ public interface BDDPackage extends EPackage {
 		EReference INPUT_PORT__SUBTREES = eINSTANCE.getInputPort_Subtrees();
 
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.OutputPortImpl <em>Output Port</em>}' class.
+		 * The meta object literal for the '{@link OutputPortImpl <em>Output Port</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.OutputPortImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getOutputPort()
+		 * @see OutputPortImpl
+		 * @see BDDPackageImpl#getOutputPort()
 		 * @generated
 		 */
 		EClass OUTPUT_PORT = eINSTANCE.getOutputPort();
@@ -911,11 +913,11 @@ public interface BDDPackage extends EPackage {
 		EReference OUTPUT_PORT__ASSIGNMENTS = eINSTANCE.getOutputPort_Assignments();
 
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.TreeImpl <em>Tree</em>}' class.
+		 * The meta object literal for the '{@link TreeImpl <em>Tree</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.TreeImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getTree()
+		 * @see TreeImpl
+		 * @see BDDPackageImpl#getTree()
 		 * @generated
 		 */
 		EClass TREE = eINSTANCE.getTree();
@@ -945,11 +947,11 @@ public interface BDDPackage extends EPackage {
 		EReference TREE__OWNER_SUBTREE_FOR_ONE = eINSTANCE.getTree_OwnerSubtreeForOne();
 
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.LeafImpl <em>Leaf</em>}' class.
+		 * The meta object literal for the '{@link LeafImpl <em>Leaf</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.LeafImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getLeaf()
+		 * @see LeafImpl
+		 * @see BDDPackageImpl#getLeaf()
 		 * @generated
 		 */
 		EClass LEAF = eINSTANCE.getLeaf();
@@ -963,11 +965,11 @@ public interface BDDPackage extends EPackage {
 		EReference LEAF__ASSIGNMENTS = eINSTANCE.getLeaf_Assignments();
 
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.AssignmentImpl <em>Assignment</em>}' class.
+		 * The meta object literal for the '{@link AssignmentImpl <em>Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.AssignmentImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getAssignment()
+		 * @see AssignmentImpl
+		 * @see BDDPackageImpl#getAssignment()
 		 * @generated
 		 */
 		EClass ASSIGNMENT = eINSTANCE.getAssignment();
@@ -997,11 +999,11 @@ public interface BDDPackage extends EPackage {
 		EReference ASSIGNMENT__OWNER = eINSTANCE.getAssignment_Owner();
 
 		/**
-		 * The meta object literal for the '{@link ttc2019.metamodels.bdd.impl.SubtreeImpl <em>Subtree</em>}' class.
+		 * The meta object literal for the '{@link SubtreeImpl <em>Subtree</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ttc2019.metamodels.bdd.impl.SubtreeImpl
-		 * @see ttc2019.metamodels.bdd.impl.BDDPackageImpl#getSubtree()
+		 * @see SubtreeImpl
+		 * @see BDDPackageImpl#getSubtree()
 		 * @generated
 		 */
 		EClass SUBTREE = eINSTANCE.getSubtree();

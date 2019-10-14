@@ -5,12 +5,8 @@ package ttc2019.metamodels.bdd.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import ttc2019.metamodels.bdd.*;
 
 /**
  * <!-- begin-user-doc -->

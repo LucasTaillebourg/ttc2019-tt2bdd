@@ -2,13 +2,11 @@
  */
 package ttc2019.metamodels.bdd.util;
 
+import metamodels.bdd.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import ttc2019.metamodels.bdd.*;
 
 /**
@@ -16,7 +14,7 @@ import ttc2019.metamodels.bdd.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see ttc2019.metamodels.bdd.BDDPackage
+ * @see BDDPackage
  * @generated
  */
 public class BDDAdapterFactory extends AdapterFactoryImpl {
@@ -120,13 +118,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.BDD <em>BDD</em>}'.
+	 * Creates a new adapter for an object of class '{@link BDD <em>BDD</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.BDD
+	 * @see BDD
 	 * @generated
 	 */
 	public Adapter createBDDAdapter() {
@@ -134,13 +132,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.Port <em>Port</em>}'.
+	 * Creates a new adapter for an object of class '{@link Port <em>Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.Port
+	 * @see Port
 	 * @generated
 	 */
 	public Adapter createPortAdapter() {
@@ -148,13 +146,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.InputPort <em>Input Port</em>}'.
+	 * Creates a new adapter for an object of class '{@link InputPort <em>Input Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.InputPort
+	 * @see InputPort
 	 * @generated
 	 */
 	public Adapter createInputPortAdapter() {
@@ -162,13 +160,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.OutputPort <em>Output Port</em>}'.
+	 * Creates a new adapter for an object of class '{@link OutputPort <em>Output Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.OutputPort
+	 * @see OutputPort
 	 * @generated
 	 */
 	public Adapter createOutputPortAdapter() {
@@ -176,13 +174,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.Tree <em>Tree</em>}'.
+	 * Creates a new adapter for an object of class '{@link Tree <em>Tree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.Tree
+	 * @see Tree
 	 * @generated
 	 */
 	public Adapter createTreeAdapter() {
@@ -190,13 +188,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.Leaf <em>Leaf</em>}'.
+	 * Creates a new adapter for an object of class '{@link Leaf <em>Leaf</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.Leaf
+	 * @see Leaf
 	 * @generated
 	 */
 	public Adapter createLeafAdapter() {
@@ -204,13 +202,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.Assignment <em>Assignment</em>}'.
+	 * Creates a new adapter for an object of class '{@link Assignment <em>Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.Assignment
+	 * @see Assignment
 	 * @generated
 	 */
 	public Adapter createAssignmentAdapter() {
@@ -218,13 +216,13 @@ public class BDDAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ttc2019.metamodels.bdd.Subtree <em>Subtree</em>}'.
+	 * Creates a new adapter for an object of class '{@link Subtree <em>Subtree</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ttc2019.metamodels.bdd.Subtree
+	 * @see Subtree
 	 * @generated
 	 */
 	public Adapter createSubtreeAdapter() {

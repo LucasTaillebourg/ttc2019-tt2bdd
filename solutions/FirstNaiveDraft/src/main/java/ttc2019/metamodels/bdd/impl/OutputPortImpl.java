@@ -2,21 +2,17 @@
  */
 package ttc2019.metamodels.bdd.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import ttc2019.metamodels.bdd.Assignment;
 import ttc2019.metamodels.bdd.BDDPackage;
 import ttc2019.metamodels.bdd.OutputPort;
+
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +22,7 @@ import ttc2019.metamodels.bdd.OutputPort;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.impl.OutputPortImpl#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link OutputPortImpl#getAssignments <em>Assignments</em>}</li>
  * </ul>
  *
  * @generated

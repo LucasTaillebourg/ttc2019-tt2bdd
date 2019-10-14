@@ -13,18 +13,18 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.OutputPort#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link OutputPort#getAssignments <em>Assignments</em>}</li>
  * </ul>
  *
- * @see ttc2019.metamodels.bdd.BDDPackage#getOutputPort()
+ * @see BDDPackage#getOutputPort()
  * @model
  * @generated
  */
 public interface OutputPort extends Port {
 	/**
 	 * Returns the value of the '<em><b>Assignments</b></em>' reference list.
-	 * The list contents are of type {@link ttc2019.metamodels.bdd.Assignment}.
-	 * It is bidirectional and its opposite is '{@link ttc2019.metamodels.bdd.Assignment#getPort <em>Port</em>}'.
+	 * The list contents are of type {@link Assignment}.
+	 * It is bidirectional and its opposite is '{@link Assignment#getPort <em>Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Assignments</em>' reference list isn't clear,
@@ -32,8 +32,8 @@ public interface OutputPort extends Port {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assignments</em>' reference list.
-	 * @see ttc2019.metamodels.bdd.BDDPackage#getOutputPort_Assignments()
-	 * @see ttc2019.metamodels.bdd.Assignment#getPort
+	 * @see BDDPackage#getOutputPort_Assignments()
+	 * @see Assignment#getPort
 	 * @model opposite="port" ordered="false"
 	 * @generated
 	 */

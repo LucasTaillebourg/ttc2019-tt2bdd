@@ -2,17 +2,11 @@
  */
 package ttc2019.metamodels.bdd.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import ttc2019.metamodels.bdd.Assignment;
 import ttc2019.metamodels.bdd.BDDPackage;
 import ttc2019.metamodels.bdd.Leaf;
@@ -26,9 +20,9 @@ import ttc2019.metamodels.bdd.OutputPort;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.impl.AssignmentImpl#isValue <em>Value</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.AssignmentImpl#getPort <em>Port</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.impl.AssignmentImpl#getOwner <em>Owner</em>}</li>
+ *   <li>{@link AssignmentImpl#isValue <em>Value</em>}</li>
+ *   <li>{@link AssignmentImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link AssignmentImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  *
  * @generated
@@ -253,6 +247,11 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 				return eInternalContainer().eInverseRemove(this, BDDPackage.LEAF__ASSIGNMENTS, Leaf.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	@Override
+	public boolean eNotificationRequired() {
+		return false;
 	}
 
 	/**

@@ -12,19 +12,19 @@ package ttc2019.metamodels.bdd;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link ttc2019.metamodels.bdd.Subtree#getPort <em>Port</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.Subtree#getTreeForZero <em>Tree For Zero</em>}</li>
- *   <li>{@link ttc2019.metamodels.bdd.Subtree#getTreeForOne <em>Tree For One</em>}</li>
+ *   <li>{@link Subtree#getPort <em>Port</em>}</li>
+ *   <li>{@link Subtree#getTreeForZero <em>Tree For Zero</em>}</li>
+ *   <li>{@link Subtree#getTreeForOne <em>Tree For One</em>}</li>
  * </ul>
  *
- * @see ttc2019.metamodels.bdd.BDDPackage#getSubtree()
+ * @see BDDPackage#getSubtree()
  * @model
  * @generated
  */
 public interface Subtree extends Tree {
 	/**
 	 * Returns the value of the '<em><b>Port</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link ttc2019.metamodels.bdd.InputPort#getSubtrees <em>Subtrees</em>}'.
+	 * It is bidirectional and its opposite is '{@link InputPort#getSubtrees <em>Subtrees</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Port</em>' reference isn't clear,
@@ -33,15 +33,15 @@ public interface Subtree extends Tree {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Port</em>' reference.
 	 * @see #setPort(InputPort)
-	 * @see ttc2019.metamodels.bdd.BDDPackage#getSubtree_Port()
-	 * @see ttc2019.metamodels.bdd.InputPort#getSubtrees
+	 * @see BDDPackage#getSubtree_Port()
+	 * @see InputPort#getSubtrees
 	 * @model opposite="subtrees" required="true" ordered="false"
 	 * @generated
 	 */
 	InputPort getPort();
 
 	/**
-	 * Sets the value of the '{@link ttc2019.metamodels.bdd.Subtree#getPort <em>Port</em>}' reference.
+	 * Sets the value of the '{@link Subtree#getPort <em>Port</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Port</em>' reference.
@@ -52,7 +52,7 @@ public interface Subtree extends Tree {
 
 	/**
 	 * Returns the value of the '<em><b>Tree For Zero</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForZero <em>Owner Subtree For Zero</em>}'.
+	 * It is bidirectional and its opposite is '{@link Tree#getOwnerSubtreeForZero <em>Owner Subtree For Zero</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tree For Zero</em>' containment reference isn't clear,
@@ -61,15 +61,15 @@ public interface Subtree extends Tree {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tree For Zero</em>' containment reference.
 	 * @see #setTreeForZero(Tree)
-	 * @see ttc2019.metamodels.bdd.BDDPackage#getSubtree_TreeForZero()
-	 * @see ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForZero
+	 * @see BDDPackage#getSubtree_TreeForZero()
+	 * @see Tree#getOwnerSubtreeForZero
 	 * @model opposite="ownerSubtreeForZero" containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	Tree getTreeForZero();
 
 	/**
-	 * Sets the value of the '{@link ttc2019.metamodels.bdd.Subtree#getTreeForZero <em>Tree For Zero</em>}' containment reference.
+	 * Sets the value of the '{@link Subtree#getTreeForZero <em>Tree For Zero</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tree For Zero</em>' containment reference.
@@ -80,7 +80,7 @@ public interface Subtree extends Tree {
 
 	/**
 	 * Returns the value of the '<em><b>Tree For One</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForOne <em>Owner Subtree For One</em>}'.
+	 * It is bidirectional and its opposite is '{@link Tree#getOwnerSubtreeForOne <em>Owner Subtree For One</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tree For One</em>' containment reference isn't clear,
@@ -89,15 +89,15 @@ public interface Subtree extends Tree {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tree For One</em>' containment reference.
 	 * @see #setTreeForOne(Tree)
-	 * @see ttc2019.metamodels.bdd.BDDPackage#getSubtree_TreeForOne()
-	 * @see ttc2019.metamodels.bdd.Tree#getOwnerSubtreeForOne
+	 * @see BDDPackage#getSubtree_TreeForOne()
+	 * @see Tree#getOwnerSubtreeForOne
 	 * @model opposite="ownerSubtreeForOne" containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	Tree getTreeForOne();
 
 	/**
-	 * Sets the value of the '{@link ttc2019.metamodels.bdd.Subtree#getTreeForOne <em>Tree For One</em>}' containment reference.
+	 * Sets the value of the '{@link Subtree#getTreeForOne <em>Tree For One</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Tree For One</em>' containment reference.

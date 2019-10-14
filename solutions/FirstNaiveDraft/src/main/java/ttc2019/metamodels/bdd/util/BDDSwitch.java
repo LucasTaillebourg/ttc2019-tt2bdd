@@ -2,12 +2,10 @@
  */
 package ttc2019.metamodels.bdd.util;
 
+import ttc2019.metamodels.bdd.BDDPackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import ttc2019.metamodels.bdd.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +17,7 @@ import ttc2019.metamodels.bdd.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see ttc2019.metamodels.bdd.BDDPackage
+ * @see BDDPackage
  * @generated
  */
 public class BDDSwitch<T> extends Switch<T> {
@@ -130,7 +128,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>BDD</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseBDD(BDD object) {
@@ -145,7 +143,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Port</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T casePort(Port object) {
@@ -160,7 +158,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Input Port</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseInputPort(InputPort object) {
@@ -175,7 +173,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Output Port</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseOutputPort(OutputPort object) {
@@ -190,7 +188,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseTree(Tree object) {
@@ -205,7 +203,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Leaf</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseLeaf(Leaf object) {
@@ -220,7 +218,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Assignment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseAssignment(Assignment object) {
@@ -235,7 +233,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Subtree</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @see #doSwitch(EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseSubtree(Subtree object) {
@@ -250,7 +248,7 @@ public class BDDSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+	 * @see #doSwitch(EObject)
 	 * @generated
 	 */
 	@Override
