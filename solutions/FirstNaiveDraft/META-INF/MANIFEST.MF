@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: EMFSolutionATL;singleton:=true
-Automatic-Module-Name: EMFSolutionATL
+Bundle-SymbolicName: FirstNaiveDraft;singleton:=true
+Automatic-Module-Name: FirstNaiveDraft
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName

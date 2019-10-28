@@ -1,8 +1,10 @@
 plugins {
-	id "org.xtext.xtend" version "2.0.4"
+    id 'java'
+    id "org.xtext.xtend" version "2.0.4"
 }
 
-xtext.version = "2.17.0"
+group 'firstnaivedraft.org'
+version '1.0-SNAPSHOT'
 
 repositories {
 	mavenCentral()
@@ -19,6 +21,8 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'java-library-distribution'
+
+mainClassName = 'ttc2019.Driver'
 
 
 
