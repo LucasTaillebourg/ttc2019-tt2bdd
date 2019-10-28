@@ -43,3 +43,6 @@ solutions/RSync/project/project/target/
 **.tt**
 **log4j2.xml**
 .vscode/settings.json**
+
+**.metada**
+**.java._trace**
