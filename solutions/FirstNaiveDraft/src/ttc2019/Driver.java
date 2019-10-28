@@ -1,12 +1,21 @@
 package ttc2019;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import ttc2019.metamodels.tt.TruthTable;
+
 import java.io.File;
 import java.io.IOException;
 
 
 public class Driver {
 
+
+	private static ResourceSet repository;
+
 	public static void main(final String[] args) {
+		System.out.println("COUCOU");
 		try {
 			initialize();
 			load();
@@ -27,13 +36,18 @@ public class Driver {
 	private static String ModelPath;
 
 	private static Object loadFile(final String path) {
-		//load file
-		return null;
+		Resource mRes;
+		try {
+			mRes = repository.getResource(URI.createFileURI(new File(path).getCanonicalPath()),	true);
+		} catch (final IOException e) {
+			throw new RuntimeException(e);
+		}
+		return mRes.getContents().get(0);
 	}
 
 	static void load() throws IOException {
 		stopwatch = System.nanoTime();
-		//solution.setTruthTable(xxxxx);
+		solution.setTruthTable((TruthTable) loadFile(ModelPath));
 
 		stopwatch = System.nanoTime() - stopwatch;
 		report(BenchmarkPhase.Load);
@@ -49,7 +63,7 @@ public class Driver {
 		Tool = System.getenv("Tool");
 
 		solution = new Solution();
-		//solution.load("TT2BDD");
+		solution.load("TT2BDD");
 
 		stopwatch = System.nanoTime() - stopwatch;
 		report(BenchmarkPhase.Initialization);
@@ -83,4 +97,5 @@ public class Driver {
 	enum BenchmarkPhase {
 		Initialization, Load, Run
 	}
+
 }
