@@ -11,3 +11,4 @@ rootProject.name = 'ttc2019-tt2bdd'
 
 include ':solutions:RelationalRAGSolution'
 include ':solutions:EMFSolutionATL'
+include ':solutions:FirstNaiveDraft'
