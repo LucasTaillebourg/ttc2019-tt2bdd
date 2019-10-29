@@ -57,8 +57,8 @@ public class Driver {
 
 
 		//Walk around to run in IDE
-		/*Model = "GeneratedI4O2Seed42.ttmodel";
-		ModelPath = "/home/leahlovelace/projets/capitrain/models/GeneratedI4O2Seed42.ttmodel";
+		Model = "GeneratedI4O2Seed42.ttmodel";
+		ModelPath = "./models/GeneratedI4O2Seed42.ttmodel";
 		RunIndex = System.getenv("RunIndex");
 		Tool = "FirstNaiveDraft";*/
 

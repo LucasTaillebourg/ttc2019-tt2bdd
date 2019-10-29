@@ -2,15 +2,11 @@ package ttc2019;
 
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import ttc2019.metamodels.bdd.*;
 import ttc2019.metamodels.bdd.impl.BDDFactoryImpl;
 import ttc2019.metamodels.tt.Port;
 import ttc2019.metamodels.tt.TruthTable;
+import ttc2019.metamodels.tt.impl.OutputPortImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +40,11 @@ public class Solution {
 		BDD bdd = bddFactory.createBDD();
 
 		EList<Port> inputPortList = truthTable.getPorts();
-		inputPortList.removeIf(port -> (port instanceof OutputPort));
+		inputPortList.removeIf(port -> (port instanceof OutputPortImpl));
+
+		inputPortList.forEach(port -> {
+			System.out.println(port);
+		});
 
 		int depthOfTheTree = inputPortList.size();
 		int actualDepth = 0;
@@ -76,11 +76,20 @@ public class Solution {
 				//Adding to the last level deph tree for being able to use it at the next iteration.
 				lastLevelTree.add(subtree);
 			} else if(actualDepth == depthOfTheTree - 1 ){
+				System.out.println("Last level : " + actualDepth);
+				System.out.println("Tree depth: " + depthOfTheTree);
+				for (Subtree subTree: lastLevelTree) {
+					//TODO THE LEAF THING WITH THE ASSIGNMENT LIST ET TOUT ET TOUT MAIS ON ARRIVE AU BOUT WOUHOU
+					Leaf leaf = bddFactory.createLeaf();
+					leaf.getAssignments()
+				}
 				// TODO Last level of the tree
 			} else {
 				List<Subtree> nextLastLevelTree = new ArrayList<>();
 				for (Subtree subTree: lastLevelTree) {
+					System.out.println(actualDepth);
 					//Create the new port as a BDD type port
+					InputPort bddPort = createPort(bddFactory, bdd, port);
 
 					InputPort bddPort = createPort(bddFactory, bdd, port);
 
@@ -114,7 +123,7 @@ public class Solution {
 
 
 	private InputPort createPort(BDDFactory bddFactory, BDD bdd, Port port) {
-		ttc2019.metamodels.bdd.InputPort bddPort = bddFactory.createInputPort();
+		InputPort bddPort = bddFactory.createInputPort();
 		bddPort.setOwner(bdd);
 		bddPort.setName(port.getName());
 		return bddPort;
