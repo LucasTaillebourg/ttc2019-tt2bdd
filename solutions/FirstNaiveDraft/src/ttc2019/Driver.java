@@ -40,6 +40,36 @@ public class Driver {
 	private static Solution solution;
 	private static String ModelPath;
 
+	static void initialize() throws Exception {
+		stopwatch = System.nanoTime();
+
+		repository = new ResourceSetImpl();
+		repository.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		repository.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+		repository.getPackageRegistry().put(TTPackage.eINSTANCE.getNsURI(), TTPackage.eINSTANCE);
+		repository.getPackageRegistry().put(BDDPackage.eINSTANCE.getNsURI(), BDDPackage.eINSTANCE);
+
+		/*TODO uncomment to run through run.py
+		Model = System.getenv("Model");
+		ModelPath = System.getenv("ModelPath");
+		RunIndex = System.getenv("RunIndex");
+		Tool = System.getenv("Tool");*/
+
+
+		//Walk around to run in IDE
+		Model = "GeneratedI4O2Seed42.ttmodel";
+		ModelPath = "/home/leahlovelace/projets/capitrain/models/GeneratedI4O2Seed42.ttmodel";
+		RunIndex = System.getenv("RunIndex");
+		Tool = "FirstNaiveDraft";
+
+		solution = new Solution();
+		solution.load("TT2BDD");
+
+		stopwatch = System.nanoTime() - stopwatch;
+		report(BenchmarkPhase.Initialization);
+	}
+
+
 	private static Object loadFile(final String path) {
 		Resource mRes;
 		try {
@@ -52,6 +82,7 @@ public class Driver {
 
 	static void load() throws IOException {
 		stopwatch = System.nanoTime();
+		System.out.println(loadFile(ModelPath));
 		solution.setTruthTable((TruthTable) loadFile(ModelPath));
 
 		final URI uri = URI.createFileURI(new File("output.xmi").getCanonicalPath());
@@ -63,27 +94,6 @@ public class Driver {
 		report(BenchmarkPhase.Load);
 	}
 
-	static void initialize() throws Exception {
-		stopwatch = System.nanoTime();
-
-		repository = new ResourceSetImpl();
-		repository.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		repository.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
-		repository.getPackageRegistry().put(TTPackage.eINSTANCE.getNsURI(), TTPackage.eINSTANCE);
-		repository.getPackageRegistry().put(BDDPackage.eINSTANCE.getNsURI(), BDDPackage.eINSTANCE);
-
-
-		Model = System.getenv("Model");
-		ModelPath = System.getenv("ModelPath");
-		RunIndex = System.getenv("RunIndex");
-		Tool = System.getenv("Tool");
-
-		solution = new Solution();
-		solution.load("TT2BDD");
-
-		stopwatch = System.nanoTime() - stopwatch;
-		report(BenchmarkPhase.Initialization);
-	}
 
 	static void run() throws IOException {
 		stopwatch = System.nanoTime();
