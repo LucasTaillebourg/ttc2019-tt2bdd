@@ -46,6 +46,10 @@ solutions/RSync/project/project/target/
 
 **.metada**
 **.java._trace**
-diagrams/
+**diagrams/**
 
 *.xtendbin
+
+diagrams/
+
+solutions/FirstNaiveDraft/solution.ini
