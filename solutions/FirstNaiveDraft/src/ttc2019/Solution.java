@@ -2,6 +2,11 @@ package ttc2019;
 
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import ttc2019.metamodels.bdd.*;
 import ttc2019.metamodels.bdd.impl.BDDFactoryImpl;
 import ttc2019.metamodels.tt.Port;
@@ -81,7 +86,7 @@ public class Solution {
 				for (Subtree subTree: lastLevelTree) {
 					//TODO THE LEAF THING WITH THE ASSIGNMENT LIST ET TOUT ET TOUT MAIS ON ARRIVE AU BOUT WOUHOU
 					Leaf leaf = bddFactory.createLeaf();
-					leaf.getAssignments()
+					//leaf.getAssignments()
 				}
 				// TODO Last level of the tree
 			} else {
@@ -89,8 +94,6 @@ public class Solution {
 				for (Subtree subTree: lastLevelTree) {
 					System.out.println(actualDepth);
 					//Create the new port as a BDD type port
-					InputPort bddPort = createPort(bddFactory, bdd, port);
-
 					InputPort bddPort = createPort(bddFactory, bdd, port);
 
 					//Creating left tree
