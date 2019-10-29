@@ -63,7 +63,6 @@ public class Driver {
 		Tool = "FirstNaiveDraft";
 
 		solution = new Solution();
-		solution.load("TT2BDD");
 
 		stopwatch = System.nanoTime() - stopwatch;
 		report(BenchmarkPhase.Initialization);
