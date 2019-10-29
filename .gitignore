@@ -46,3 +46,6 @@ solutions/RSync/project/project/target/
 
 **.metada**
 **.java._trace**
+diagrams/
+
+*.xtendbin
