@@ -3,19 +3,24 @@ package ttc2019;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import ttc2019.metamodels.bdd.BDDPackage;
+import ttc2019.metamodels.tt.TTPackage;
 import ttc2019.metamodels.tt.TruthTable;
 
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Driver derived from the ATLEMFTVImproved driver
+ * This is responsible for allowing our solution to be run through the run.py script
+ */
 public class Driver {
 
-
-	private static ResourceSet repository;
-
 	public static void main(final String[] args) {
-		System.out.println("COUCOU");
+		System.out.println("Running driver");
 		try {
 			initialize();
 			load();
@@ -25,7 +30,7 @@ public class Driver {
 		}
 	}
 
-	//private static ResourceSet repository;
+	private static ResourceSet repository;
 	private static String RunIndex;
 	private static String Model;
 	private static String Tool;
@@ -49,12 +54,23 @@ public class Driver {
 		stopwatch = System.nanoTime();
 		solution.setTruthTable((TruthTable) loadFile(ModelPath));
 
+		final URI uri = URI.createFileURI(new File("output.xmi").getCanonicalPath());
+		final Resource outputResource = repository.createResource(uri);
+		outputResource.getContents().clear();
+		//solution.setOutputResource(outputResource);
+
 		stopwatch = System.nanoTime() - stopwatch;
 		report(BenchmarkPhase.Load);
 	}
 
 	static void initialize() throws Exception {
 		stopwatch = System.nanoTime();
+
+		repository = new ResourceSetImpl();
+		repository.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		repository.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+		repository.getPackageRegistry().put(TTPackage.eINSTANCE.getNsURI(), TTPackage.eINSTANCE);
+		repository.getPackageRegistry().put(BDDPackage.eINSTANCE.getNsURI(), BDDPackage.eINSTANCE);
 
 
 		Model = System.getenv("Model");
