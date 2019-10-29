@@ -49,18 +49,18 @@ public class Driver {
 		repository.getPackageRegistry().put(TTPackage.eINSTANCE.getNsURI(), TTPackage.eINSTANCE);
 		repository.getPackageRegistry().put(BDDPackage.eINSTANCE.getNsURI(), BDDPackage.eINSTANCE);
 
-		/*TODO uncomment to run through run.py
+		//TODO uncomment to run through run.py
 		Model = System.getenv("Model");
 		ModelPath = System.getenv("ModelPath");
 		RunIndex = System.getenv("RunIndex");
-		Tool = System.getenv("Tool");*/
+		Tool = System.getenv("Tool");
 
 
 		//Walk around to run in IDE
-		Model = "GeneratedI4O2Seed42.ttmodel";
+		/*Model = "GeneratedI4O2Seed42.ttmodel";
 		ModelPath = "/home/leahlovelace/projets/capitrain/models/GeneratedI4O2Seed42.ttmodel";
 		RunIndex = System.getenv("RunIndex");
-		Tool = "FirstNaiveDraft";
+		Tool = "FirstNaiveDraft";*/
 
 		solution = new Solution();
 

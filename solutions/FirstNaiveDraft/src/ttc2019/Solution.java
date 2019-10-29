@@ -2,17 +2,21 @@ package ttc2019;
 
 
 import org.eclipse.emf.common.util.EList;
-import ttc2019.metamodels.bdd.BDD;
-import ttc2019.metamodels.bdd.BDDFactory;
-import ttc2019.metamodels.bdd.OutputPort;
-import ttc2019.metamodels.bdd.Subtree;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import ttc2019.metamodels.bdd.*;
 import ttc2019.metamodels.bdd.impl.BDDFactoryImpl;
 import ttc2019.metamodels.tt.Port;
 import ttc2019.metamodels.tt.TruthTable;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Naive solution
@@ -21,7 +25,7 @@ import java.util.List;
 public class Solution {
 
 	private TruthTable truthTable;
-	private BDD BinaryDEcitionTree;
+	private BDD binaryDecitionTree;
 
 
 	/**
@@ -59,7 +63,7 @@ public class Solution {
 				Subtree subtree = bddFactory.createSubtree();
 
 				//Create the new port as a BDD type port
-				ttc2019.metamodels.bdd.InputPort bddPort = createPort(bddFactory, bdd, port);
+				InputPort bddPort = createPort(bddFactory, bdd, port);
 
 				//Set the tree port
 				subtree.setPort(bddPort);
@@ -77,7 +81,8 @@ public class Solution {
 				List<Subtree> nextLastLevelTree = new ArrayList<>();
 				for (Subtree subTree: lastLevelTree) {
 					//Create the new port as a BDD type port
-					ttc2019.metamodels.bdd.InputPort bddPort = createPort(bddFactory, bdd, port);
+
+					InputPort bddPort = createPort(bddFactory, bdd, port);
 
 					//Creating left tree
 					Subtree subLeftTree = bddFactory.createSubtree();
@@ -104,8 +109,9 @@ public class Solution {
 		//TODO Calculating the leaf value at the end of the tree, or maybe doing it in the last level iteration of the graph :thinking_face:s
 
 		//TODO optimized the tree with the reducing algorithm : https://www.cs.ox.ac.uk/people/james.worrell/lec5-2015.pdf
-
+		binaryDecitionTree = bdd;
 	}
+
 
 	private InputPort createPort(BDDFactory bddFactory, BDD bdd, Port port) {
 		ttc2019.metamodels.bdd.InputPort bddPort = bddFactory.createInputPort();
@@ -114,8 +120,33 @@ public class Solution {
 		return bddPort;
 	}
 
+
+	/**
+	 * Write BDD into an xmi file
+	 * @throws IOException
+	 */
 	public void save() throws IOException {
-	//write result
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		Map<String, Object> m = reg.getExtensionToFactoryMap();
+		m.put("xmi", new XMIResourceFactoryImpl());
+
+		// Obtain a new resource set
+		ResourceSet resSet = new ResourceSetImpl();
+
+		// create a resource
+		Resource resource = resSet.createResource(URI
+				.createURI("FirstNaiveDraft" + ".xmi"));
+		// Get the first model element and cast it to the right type, in my
+		// example everything is hierarchical included in this first node
+		resource.getContents().add(binaryDecitionTree);
+
+		// now save the content.
+		try {
+			resource.save(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
