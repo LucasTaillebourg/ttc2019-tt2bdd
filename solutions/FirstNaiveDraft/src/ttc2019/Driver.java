@@ -58,7 +58,7 @@ public class Driver {
 
 		//Walk around to run in IDE
 		Model = "GeneratedI4O2Seed42.ttmodel";
-		ModelPath = "../../models/GeneratedI4O2Seed42.ttmodel";
+		ModelPath = ExternalConfig.MODEL_PATH;
 		RunIndex = System.getenv("RunIndex");
 		Tool = "FirstNaiveDraft";
 

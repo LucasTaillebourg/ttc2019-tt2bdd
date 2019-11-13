@@ -87,12 +87,12 @@ public class Solution {
 					//Creating left tree
 					Subtree subLeftTree = bddFactory.createSubtree();
 					subLeftTree.setPort(bddPort);
-					subTree.setTreeForZero(subLeftTree);
+					subTree.setTreeForOne(subLeftTree);
 
 					//Creating right tree
 					Subtree subRightTree = bddFactory.createSubtree();
 					subRightTree.setPort(bddPort);
-					subTree.setTreeForOne(subRightTree);
+					subTree.setTreeForZero(subRightTree);
 
 					//Adding the the next next level.
 					nextLastLevelTree.add(subLeftTree);
@@ -135,7 +135,7 @@ public class Solution {
 								for (Cell outputCell: row.getCells()){
 									if(outputCell.getPort() instanceof OutputPortImpl){
 										createLeaf(cell, outputCell, leaf);
-										subTree.setTreeForZero(leaf);
+										subTree.setTreeForOne(leaf);
 									}
 								}
 							}else {
@@ -143,7 +143,7 @@ public class Solution {
 								for (Cell outputCell: row.getCells()){
 									if(outputCell.getPort() instanceof OutputPortImpl){
 										createLeaf(cell, outputCell, leaf);
-										subTree.setTreeForOne(leaf);
+										subTree.setTreeForZero(leaf);
 									}
 								}
 							}
@@ -166,8 +166,8 @@ public class Solution {
 						}
 					}
 				}
-				initiateLeaf(subTree.getTreeForZero(), trueRows );
-				initiateLeaf(subTree.getTreeForOne() , falseRows);
+				initiateLeaf(subTree.getTreeForZero(), falseRows);
+				initiateLeaf(subTree.getTreeForOne() , trueRows);
 			}
 
 		} else {
