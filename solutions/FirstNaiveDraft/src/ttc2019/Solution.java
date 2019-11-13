@@ -51,11 +51,6 @@ public class Solution {
 		EList<Port> inputPortList = truthTable.getPorts();
 		inputPortList.removeIf(port -> (port instanceof OutputPortImpl));
 
-		inputPortList.forEach(System.out::println);
-
-		int depthOfTheTree = inputPortList.size();
-		int actualDepth = 0;
-
 		//Used for knowing the last iteration subtrees calculated
 		List<Subtree> lastLevelTree = new ArrayList<>();
 
@@ -79,38 +74,13 @@ public class Solution {
 
 				//It's the first so it's declared as the root tree
 				bdd.setTree(subtree);
-
-				//We created one level of the tree, the first
-				actualDepth++;
 				//Adding to the last level deph tree for being able to use it at the next iteration.
 				lastLevelTree.add(subtree);
 
 				finalTree = subtree;
-			} else if(actualDepth == depthOfTheTree - 1 ){
-				System.out.println("Last level : " + actualDepth);
-				System.out.println("Tree depth: " + depthOfTheTree);
-				for (Subtree subTree: lastLevelTree) {
-					//TODO THE LEAF THING WITH THE ASSIGNMENT LIST ET TOUT ET TOUT MAIS ON ARRIVE AU BOUT WOUHOU
-
-					InputPort bddPort = createPort(port);
-					subTree.setPort(bddPort);
-
-					//Creating left tree
-					Leaf leftLeaf = bddFactory.createLeaf();
-					subTree.setTreeForZero(leftLeaf);
-
-					//Creating right tree
-					Subtree rightLeaf = bddFactory.createSubtree();
-					subTree.setTreeForZero(rightLeaf);
-
-
-					//leaf.getAssignments()
-				}
-				// TODO Last level of the tree
 			} else {
 				List<Subtree> nextLastLevelTree = new ArrayList<>();
 				for (Subtree subTree: lastLevelTree) {
-					System.out.println(actualDepth);
 					//Create the new port as a BDD type port
 					InputPort bddPort = createPort(port);
 
@@ -122,7 +92,7 @@ public class Solution {
 					//Creating right tree
 					Subtree subRightTree = bddFactory.createSubtree();
 					subRightTree.setPort(bddPort);
-					subTree.setTreeForZero(subRightTree);
+					subTree.setTreeForOne(subRightTree);
 
 					//Adding the the next next level.
 					nextLastLevelTree.add(subLeftTree);
@@ -130,9 +100,6 @@ public class Solution {
 				}
 				//The new level tree for the next turn.
 				lastLevelTree = nextLastLevelTree;
-
-				//Another depth level created
-				actualDepth++;
 			}
 		}
 		//TODO Calculating the leaf value at the end of the tree, or maybe doing it in the last level iteration of the graph :thinking_face:s
@@ -143,58 +110,63 @@ public class Solution {
 			initiateLeaf(finalSubTree, truthTable.getRows());
 		}else {
 			Leaf leaf = (Leaf) finalTree;
-			System.out.println("TODO");
+
 			// TODO Si on n'a qu'un leaf des le depart
 		}
 		//TODO optimized the tree with the reducing algorithm : https://www.cs.ox.ac.uk/people/james.worrell/lec5-2015.pdf
+
+		DebugHelpers.printTree(finalTree);
+
 		binaryDecitionTree = bdd;
 	}
 
 	private void initiateLeaf(Tree tree, EList<Row> rows) {
-
 		if(tree instanceof Subtree){
-
 			Subtree subTree = (Subtree) tree;
-
-			InputPort port = subTree.getPort();
-			EList<Row> trueRows = new BasicEList<>();
-			EList<Row> falseRows = new BasicEList<>();
-
-			for (Row row : rows) {
-				for (Cell cell : row.getCells()) {
-					if(cell.getPort().getName().equals(port.getName())){
-						if(cell.isValue()){
-							trueRows.add(row);
-						} else {
-							falseRows.add(row);
+			//If it's the last level, checking on forZero would have been the same
+			if(subTree.getTreeForOne() == null){
+				Leaf leaf = bddFactory.createLeaf();
+				InputPort port = subTree.getPort();
+				for (Row row : rows) {
+					for (Cell cell : row.getCells()) {
+						if(cell.getPort().getName().equals(port.getName())){
+							for (Cell outputCell: row.getCells()){
+								if(outputCell instanceof OutputPort){
+									OutputPort leftPort = (OutputPort) outputCell;
+									Assignment ass = bddFactory.createAssignment();
+									ass.setOwner(leaf);
+									ass.setPort(leftPort);
+									ass.setValue(cell.isValue());
+									leaf.getAssignments().add(ass);
+								}
+							}
 						}
 					}
 				}
+			} else{
+				InputPort port = subTree.getPort();
+				EList<Row> trueRows = new BasicEList<>();
+				EList<Row> falseRows = new BasicEList<>();
+
+				for (Row row : rows) {
+					for (Cell cell : row.getCells()) {
+						if(cell.getPort().getName().equals(port.getName())){
+							if(cell.isValue()){
+								trueRows.add(row);
+							} else {
+								falseRows.add(row);
+							}
+						}
+					}
+				}
+				initiateLeaf(subTree.getTreeForZero(), trueRows );
+				initiateLeaf(subTree.getTreeForOne() , falseRows);
 			}
 
-			initiateLeaf(subTree.getTreeForZero(), trueRows );
-			initiateLeaf(subTree.getTreeForOne() , falseRows);
 		} else {
-			Leaf leaf = (Leaf) tree;
-			//Normalement il n'en reste plus qu'une
-			rows.get(0).getCells().forEach(cell -> {
-				if(cell instanceof OutputPort){
-					OutputPort port = (OutputPort) cell;
-					Assignment ass = bddFactory.createAssignment();
-					ass.setOwner(leaf);
-					ass.setPort(port);
-					ass.setValue(cell.isValue());
-					((Leaf) tree).getAssignments().add(ass);
+				//TODO case only one leaf
 
-					//FIXME WOW CA C'EST SI CA NE MARCHE PAS
-					//TODO wtf je l'assigne où ?
-					// FIXME Idée 1 :  Pourquoi pas faire l'algo de recherche au moment de l'assgination de la leaf ?  Quid du cout
-					// FIXME Idée 2 : Je suis bien censé pourvoir accéder aux assignments de la bonne leaf ici, remue toi la soupiere !
-					// FIXME Just a thought : Je parcours la table pour assigner les leaf ou je parcours l'abre pour trouver les bonnes rows ?
-				}
-			});
 		}
-
 
 	}
 
