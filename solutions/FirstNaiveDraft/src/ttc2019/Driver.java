@@ -50,15 +50,15 @@ public class Driver {
 		repository.getPackageRegistry().put(BDDPackage.eINSTANCE.getNsURI(), BDDPackage.eINSTANCE);
 
 		//TODO uncomment to run through run.py
-		Model = System.getenv("Model");
+		/*Model = System.getenv("Model");
 		ModelPath = System.getenv("ModelPath");
 		RunIndex = System.getenv("RunIndex");
-		Tool = System.getenv("Tool");
+		Tool = System.getenv("Tool");*/
 
 
 		//Walk around to run in IDE
 		Model = "GeneratedI4O2Seed42.ttmodel";
-		ModelPath = "./models/GeneratedI4O2Seed42.ttmodel";
+		ModelPath = "../../models/GeneratedI4O2Seed42.ttmodel";
 		RunIndex = System.getenv("RunIndex");
 		Tool = "FirstNaiveDraft";
 
