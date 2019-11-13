@@ -33,9 +33,10 @@ public  class DebugHelpers {
             printTree(subtree.getTreeForOne());
             System.out.println("Zero");
             printTree(subtree.getTreeForZero());
-            if(subtree.getTreeForOne() instanceof Leaf){
-                System.out.println("IJFBDSUHBCKDSJNDSOKNDSOK,");
-            }
+        } else if (tree instanceof Leaf) {
+            Leaf leaf = (Leaf) tree;
+            System.out.println(leaf);
+            leaf.getAssignments().forEach(assignment -> System.out.println(assignment.getPort() + Boolean.toString(assignment.isValue())));
         }
     }
 }

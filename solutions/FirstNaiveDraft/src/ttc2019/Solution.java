@@ -125,19 +125,26 @@ public class Solution {
 			Subtree subTree = (Subtree) tree;
 			//If it's the last level, checking on forZero would have been the same
 			if(subTree.getTreeForOne() == null){
-				Leaf leaf = bddFactory.createLeaf();
 				InputPort port = subTree.getPort();
 				for (Row row : rows) {
 					for (Cell cell : row.getCells()) {
 						if(cell.getPort().getName().equals(port.getName())){
-							for (Cell outputCell: row.getCells()){
-								if(outputCell instanceof OutputPort){
-									OutputPort leftPort = (OutputPort) outputCell;
-									Assignment ass = bddFactory.createAssignment();
-									ass.setOwner(leaf);
-									ass.setPort(leftPort);
-									ass.setValue(cell.isValue());
-									leaf.getAssignments().add(ass);
+							// TODO mutualiser ca
+							if (cell.isValue()){
+								Leaf leaf = bddFactory.createLeaf();
+								for (Cell outputCell: row.getCells()){
+									if(outputCell.getPort() instanceof OutputPortImpl){
+										createLeaf(cell, outputCell, leaf);
+										subTree.setTreeForZero(leaf);
+									}
+								}
+							}else {
+								Leaf leaf = bddFactory.createLeaf();
+								for (Cell outputCell: row.getCells()){
+									if(outputCell.getPort() instanceof OutputPortImpl){
+										createLeaf(cell, outputCell, leaf);
+										subTree.setTreeForOne(leaf);
+									}
 								}
 							}
 						}
@@ -168,6 +175,17 @@ public class Solution {
 
 		}
 
+	}
+
+	private void createLeaf(Cell cell, Cell outputCell, Leaf leaf) {
+		OutputPort leftPort = bddFactory.createOutputPort();
+		leftPort.setName(outputCell.getPort().getName());
+		leftPort.setOwner(bdd);
+		Assignment ass = bddFactory.createAssignment();
+		ass.setOwner(leaf);
+		ass.setPort(leftPort);
+		ass.setValue(outputCell.isValue());
+		leaf.getAssignments().add(ass);
 	}
 
 
