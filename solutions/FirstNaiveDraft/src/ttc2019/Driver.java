@@ -60,7 +60,7 @@ public class Driver {
 		Model = "GeneratedI4O2Seed42.ttmodel";
 		ModelPath = "./models/GeneratedI4O2Seed42.ttmodel";
 		RunIndex = System.getenv("RunIndex");
-		Tool = "FirstNaiveDraft";*/
+		Tool = "FirstNaiveDraft";
 
 		solution = new Solution();
 
