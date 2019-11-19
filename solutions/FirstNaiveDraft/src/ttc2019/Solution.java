@@ -95,11 +95,8 @@ public class Solution {
 
 				Subtree subtree = bddFactory.createSubtree();
 
-				//Create the new port as a BDD type port
-				InputPort bddPort = createPort(port);
-
 				//Set the tree port
-				subtree.setPort(bddPort);
+				subtree.setPort(port);
 
 				//It's the first so it's declared as the root tree
 				bdd.setTree(subtree);
@@ -111,17 +108,15 @@ public class Solution {
 				//Initiating all the subtree of the last level
 				List<Subtree> nextLastLevelTree = new ArrayList<>();
 				for (Subtree subTree: lastLevelTree) {
-					//Create the new port as a BDD type port
-					InputPort bddPort = createPort(port);
 
 					//Creating left tree
 					Subtree subLeftTree = bddFactory.createSubtree();
-					subLeftTree.setPort(bddPort);
+					subLeftTree.setPort(port);
 					subTree.setTreeForOne(subLeftTree);
 
 					//Creating right tree
 					Subtree subRightTree = bddFactory.createSubtree();
-					subRightTree.setPort(bddPort);
+					subRightTree.setPort(port);
 					subTree.setTreeForZero(subRightTree);
 
 					//Adding to the next next level.
@@ -206,8 +201,7 @@ public class Solution {
 		ResourceSet resSet = new ResourceSetImpl();
 
 		// create a resource
-		Resource resource = resSet.createResource(URI
-				.createURI("FirstNaiveDraft" + ".xmi"));
+		Resource resource = resSet.createResource(URI.createURI("FirstNaiveDraft" + ".xmi"));
 		// Get the first model element and cast it to the right type, in my
 		// example everything is hierarchical included in this first node
 		resource.getContents().add(binaryDecitionTree);
