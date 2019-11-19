@@ -9,17 +9,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TreeOptimization {
+    private static List<Tree>  nodesAtCurrentLvl;
+    private static List<Tree> nodesAtParentLvl;
 
     /**
      * https://www.cs.ox.ac.uk/people/james.worrell/lec5-2015.pdf
      * @param bdd
      * @return
      */
-    public static BDD optimize(BDD bdd){
+    public static void optimize(BDD bdd){
 
-        bdd = leafReduction(bdd);
+       leafReduction(bdd);
+       testReduction(bdd);
 
-        return bdd;
     }
 
     /**
@@ -27,14 +29,61 @@ public class TreeOptimization {
      * @param bdd
      * @return
      */
-    private static BDD testReduction(BDD bdd){
-        for(Port port : bdd.getPorts()) {
-            if (port instanceof OutputPort) {
+    private static void testReduction(BDD bdd){
+        List<OutputPort> outputPorts  = bdd.getPorts().parallelStream().filter(p -> p instanceof OutputPort).map(p -> (OutputPort)p).collect(Collectors.toList());
+        nodesAtCurrentLvl = new ArrayList<>();
+        nodesAtParentLvl = new ArrayList<>();
+        outputPorts.parallelStream()
+                .forEach(outputPort -> nodesAtCurrentLvl.addAll(outputPort.getAssignments()
+                        .parallelStream()
+                        .map(Assignment::getOwner).collect(Collectors.toList())
+                ));
+
+        //to make generic for trees
+        while (!nodesAtCurrentLvl.isEmpty()){
+            for(Tree currentNode : nodesAtCurrentLvl){
+                Subtree currParentOne = currentNode.getOwnerSubtreeForOne();
+                Subtree currParentZero = currentNode.getOwnerSubtreeForZero();
+                //If zero-branch parent points twice to leaf
+                if(currParentOne!= null){
+                    if( currParentOne.getTreeForZero().equals(currentNode)){
+                        deleteParent(currentNode);
+                    }
+                    else{
+                        nodesAtParentLvl.add(currParentOne);
+                    }
+                }
+                if(currParentZero!= null){
+                    if( currParentZero.getTreeForOne().equals(currentNode)){
+                        deleteParent(currentNode);
+                    }
+                    else{
+                        nodesAtParentLvl.add(currParentOne);
+                    }
+                }
 
             }
+            nodesAtCurrentLvl.addAll(nodesAtParentLvl);
+            nodesAtParentLvl.clear();
         }
-        return  bdd;
+
+
     }
+
+    private static  void deleteParent(Tree currentNode){
+        Subtree newParentOne = currentNode.getOwnerSubtreeForOne();
+        Subtree newParentZero = currentNode.getOwnerSubtreeForZero();
+        if (newParentOne != null) {
+            newParentOne.setTreeForOne(currentNode);
+            nodesAtParentLvl.add(newParentOne);
+        }
+        if (newParentZero != null){
+            newParentZero.setTreeForZero(currentNode);
+            nodesAtParentLvl.add(newParentZero);
+        }
+    }
+
+
 
     /**
      * Remove duplicate leaves
