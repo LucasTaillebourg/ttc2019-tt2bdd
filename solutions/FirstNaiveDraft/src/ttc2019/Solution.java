@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import ttc2019.metamodels.bdd.*;
 import ttc2019.metamodels.bdd.impl.BDDFactoryImpl;
 import ttc2019.metamodels.tt.Cell;
-import ttc2019.metamodels.tt.Port;
 import ttc2019.metamodels.tt.Row;
 import ttc2019.metamodels.tt.TruthTable;
 import ttc2019.metamodels.tt.impl.OutputPortImpl;
@@ -40,29 +39,59 @@ public class Solution {
 	void setTruthTable(final TruthTable tt) {
 		this.truthTable = tt;
 		DebugHelpers.printTruthTable((truthTable));
-
 	}
-
 
 	public void run() {
 		bddFactory = BDDFactoryImpl.init();
 		bdd = bddFactory.createBDD();
 
-		EList<Port> inputPortList = truthTable.getPorts();
-		inputPortList.removeIf(port -> (port instanceof OutputPortImpl));
+
+
+		EList<InputPort> inputPortList = new BasicEList<>();
+		truthTable.getPorts().forEach(port -> {
+			if (port instanceof ttc2019.metamodels.tt.InputPort){
+				InputPort inputPort = bddFactory.createInputPort();
+				inputPort.setOwner(bdd);
+				inputPort.setName(port.getName());
+				inputPortList.add(inputPort);
+			}
+		});
+
+		EList<OutputPort> outPortList = new BasicEList<>();
+		truthTable.getPorts().forEach(port -> {
+			if (port instanceof OutputPortImpl){
+				OutputPort outputPort = bddFactory.createOutputPort();
+				outputPort.setOwner(bdd);
+				outputPort.setName(port.getName());
+				outPortList.add(outputPort);
+			}
+		});
+
+		System.out.println(outPortList);
+		//Creating the tree
+		Tree tree = createTree(inputPortList);;
+
+		//Asign values to the Leafs
+		instanciateLeaf(tree, truthTable.getRows(), outPortList);
+
+		//bdd = TreeOptimization.optimize(bdd);
+
+		DebugHelpers.printTree(tree);
+
+		//TODO optimized the tree with the reducing algorithm : https://www.cs.ox.ac.uk/people/james.worrell/lec5-2015.pdf
+
+		binaryDecitionTree = bdd;
+	}
+
+	private Tree createTree(EList<InputPort> inputPortList) {
+		Tree finalTree = null;
 
 		//Used for knowing the last iteration subtrees calculated
 		List<Subtree> lastLevelTree = new ArrayList<>();
 
-		Tree finalTree = null;
-
 		//This is the tree generation, without any optimisation, so all branch are computed.
-		for (Port port: inputPortList) {
+		for (InputPort port: inputPortList) {
 			if(bdd.getTree() == null){
-				//TODO First level of the tree
-
-				// TODO TAKE CARE OF THE CASE OF ONLY ONE ROW
-				// TODO so the first element is a leaf and not a subTree
 
 				Subtree subtree = bddFactory.createSubtree();
 
@@ -79,6 +108,7 @@ public class Solution {
 
 				finalTree = subtree;
 			} else {
+				//Initiating all the subtree of the last level
 				List<Subtree> nextLastLevelTree = new ArrayList<>();
 				for (Subtree subTree: lastLevelTree) {
 					//Create the new port as a BDD type port
@@ -94,7 +124,7 @@ public class Solution {
 					subRightTree.setPort(bddPort);
 					subTree.setTreeForZero(subRightTree);
 
-					//Adding the the next next level.
+					//Adding to the next next level.
 					nextLastLevelTree.add(subLeftTree);
 					nextLastLevelTree.add(subRightTree);
 				}
@@ -102,100 +132,66 @@ public class Solution {
 				lastLevelTree = nextLastLevelTree;
 			}
 		}
-		//TODO Calculating the leaf value at the end of the tree, or maybe doing it in the last level iteration of the graph :thinking_face:s
-
-		if( finalTree instanceof Subtree){
-			Subtree finalSubTree = (Subtree) finalTree;
-
-			initiateLeaf(finalSubTree, truthTable.getRows());
-		}else {
-			Leaf leaf = (Leaf) finalTree;
-
-			// TODO Si on n'a qu'un leaf des le depart
-		}
-		//TODO optimized the tree with the reducing algorithm : https://www.cs.ox.ac.uk/people/james.worrell/lec5-2015.pdf
-
-		DebugHelpers.printTree(finalTree);
-
-		binaryDecitionTree = bdd;
+		return finalTree;
 	}
 
-	private void initiateLeaf(Tree tree, EList<Row> rows) {
-		if(tree instanceof Subtree){
-			Subtree subTree = (Subtree) tree;
-			//If it's the last level, checking on forZero would have been the same
-			if(subTree.getTreeForOne() == null){
-				InputPort port = subTree.getPort();
-				for (Row row : rows) {
-					for (Cell cell : row.getCells()) {
-						if(cell.getPort().getName().equals(port.getName())){
-							// TODO mutualiser ca
-							if (cell.isValue()){
-								Leaf leaf = bddFactory.createLeaf();
-								for (Cell outputCell: row.getCells()){
-									if(outputCell.getPort() instanceof OutputPortImpl){
-										createLeaf(cell, outputCell, leaf);
-										subTree.setTreeForOne(leaf);
-									}
-								}
-							}else {
-								Leaf leaf = bddFactory.createLeaf();
-								for (Cell outputCell: row.getCells()){
-									if(outputCell.getPort() instanceof OutputPortImpl){
-										createLeaf(cell, outputCell, leaf);
-										subTree.setTreeForZero(leaf);
-									}
-								}
-							}
-						}
-					}
-				}
-			} else{
-				InputPort port = subTree.getPort();
-				EList<Row> trueRows = new BasicEList<>();
-				EList<Row> falseRows = new BasicEList<>();
+	private void instanciateLeaf(Tree tree, EList<Row> rows, EList<OutputPort> outPortList) {
+		Subtree subTree = (Subtree) tree;
 
-				for (Row row : rows) {
-					for (Cell cell : row.getCells()) {
-						if(cell.getPort().getName().equals(port.getName())){
-							if(cell.isValue()){
-								trueRows.add(row);
-							} else {
-								falseRows.add(row);
-							}
+		//If it's the last level.  NDLR : checking on forZero would have been the same
+		if(subTree.getTreeForOne() == null){
+			rows.forEach(row -> row.getCells()
+					.stream()
+					.filter(cell -> cell.getPort().getName().equals(subTree.getPort().getName()))
+					.forEach( cell -> createLeaf(row, cell, subTree, outPortList)));
+		} else{
+			EList<Row> trueRows = new BasicEList<>();
+			EList<Row> falseRows = new BasicEList<>();
+
+			rows.forEach(row -> row.getCells()
+					.stream()
+					.filter(cell -> cell.getPort().getName().equals(subTree.getPort().getName()))
+					.forEach( cell -> {
+						if(cell.isValue()) {
+							trueRows.add(row);
+						}else{
+							falseRows.add(row);
 						}
-					}
+					}));
+
+			instanciateLeaf(subTree.getTreeForZero(), falseRows, outPortList);
+			instanciateLeaf(subTree.getTreeForOne() , trueRows, outPortList);
+		}
+
+	}
+
+	private void createLeaf(Row row, Cell cell, Subtree subTree, EList<OutputPort> outPortList) {
+		Leaf leaf = bddFactory.createLeaf();
+		for (Cell outputCell: row.getCells()){
+			if(outputCell.getPort() instanceof OutputPortImpl){
+				Assignment ass = bddFactory.createAssignment();
+				ass.setOwner(leaf);
+				ass.setPort(outPortList.stream()
+								.filter(outputPort -> outputPort.getName().equals(outputCell.getPort().getName()))
+								.findFirst()
+								.get());
+				ass.setValue(outputCell.isValue());
+				leaf.getAssignments().add(ass);
+				if(cell.isValue()){
+					subTree.setTreeForOne(leaf);
+				}else{
+					subTree.setTreeForZero(leaf);
 				}
-				initiateLeaf(subTree.getTreeForZero(), falseRows);
-				initiateLeaf(subTree.getTreeForOne() , trueRows);
 			}
-
-		} else {
-				//TODO case only one leaf
-
 		}
-
 	}
 
-	private void createLeaf(Cell cell, Cell outputCell, Leaf leaf) {
-		OutputPort leftPort = bddFactory.createOutputPort();
-		leftPort.setName(outputCell.getPort().getName());
-		leftPort.setOwner(bdd);
-		Assignment ass = bddFactory.createAssignment();
-		ass.setOwner(leaf);
-		ass.setPort(leftPort);
-		ass.setValue(outputCell.isValue());
-		leaf.getAssignments().add(ass);
-	}
-
-
-	private InputPort createPort(Port port) {
+	private InputPort createPort(InputPort port) {
 		InputPort bddPort = bddFactory.createInputPort();
 		bddPort.setOwner(bdd);
 		bddPort.setName(port.getName());
 		return bddPort;
 	}
-
 
 	/**
 	 * Write BDD into an xmi file
