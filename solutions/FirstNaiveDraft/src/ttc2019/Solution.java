@@ -1,6 +1,5 @@
 package ttc2019;
 
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -23,7 +22,6 @@ import java.util.Map;
 
 /**
  * Naive solution
- *
  */
 public class Solution {
 
@@ -45,8 +43,7 @@ public class Solution {
 		bddFactory = BDDFactoryImpl.init();
 		bdd = bddFactory.createBDD();
 
-
-
+		// Creating input port list for always referencing the same port in the code
 		EList<InputPort> inputPortList = new BasicEList<>();
 		truthTable.getPorts().forEach(port -> {
 			if (port instanceof ttc2019.metamodels.tt.InputPort){
@@ -57,6 +54,7 @@ public class Solution {
 			}
 		});
 
+		// Creating output port list for always referencing the same port in the code
 		EList<OutputPort> outPortList = new BasicEList<>();
 		truthTable.getPorts().forEach(port -> {
 			if (port instanceof OutputPortImpl){
@@ -67,11 +65,10 @@ public class Solution {
 			}
 		});
 
-		System.out.println(outPortList);
 		//Creating the tree
 		Tree tree = createTree(inputPortList);;
 
-		//Asign values to the Leafs
+		//Assign values to the Leafs
 		instanciateLeaf(tree, truthTable.getRows(), outPortList);
 
 		//bdd = TreeOptimization.optimize(bdd);
@@ -135,10 +132,12 @@ public class Solution {
 
 		//If it's the last level.  NDLR : checking on forZero would have been the same
 		if(subTree.getTreeForOne() == null){
+
 			rows.forEach(row -> row.getCells()
 					.stream()
 					.filter(cell -> cell.getPort().getName().equals(subTree.getPort().getName()))
 					.forEach( cell -> createLeaf(row, cell, subTree, outPortList)));
+
 		} else{
 			EList<Row> trueRows = new BasicEList<>();
 			EList<Row> falseRows = new BasicEList<>();
@@ -146,18 +145,20 @@ public class Solution {
 			rows.forEach(row -> row.getCells()
 					.stream()
 					.filter(cell -> cell.getPort().getName().equals(subTree.getPort().getName()))
-					.forEach( cell -> {
-						if(cell.isValue()) {
-							trueRows.add(row);
-						}else{
-							falseRows.add(row);
-						}
-					}));
+					.forEach( cell -> assignInRows(trueRows, falseRows, row, cell)));
 
 			instanciateLeaf(subTree.getTreeForZero(), falseRows, outPortList);
 			instanciateLeaf(subTree.getTreeForOne() , trueRows, outPortList);
 		}
 
+	}
+
+	private void assignInRows(EList<Row> trueRows, EList<Row> falseRows, Row row, Cell cell) {
+		if(cell.isValue()) {
+			trueRows.add(row);
+		}else{
+			falseRows.add(row);
+		}
 	}
 
 	private void createLeaf(Row row, Cell cell, Subtree subTree, EList<OutputPort> outPortList) {
@@ -179,13 +180,6 @@ public class Solution {
 				}
 			}
 		}
-	}
-
-	private InputPort createPort(InputPort port) {
-		InputPort bddPort = bddFactory.createInputPort();
-		bddPort.setOwner(bdd);
-		bddPort.setName(port.getName());
-		return bddPort;
 	}
 
 	/**
@@ -210,10 +204,8 @@ public class Solution {
 		try {
 			resource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 
 }
