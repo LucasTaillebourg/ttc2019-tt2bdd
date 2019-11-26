@@ -25,10 +25,18 @@ import java.util.Map;
  */
 public class Solution {
 
+	/**
+	 * The input truthtable.
+	 */
 	private TruthTable truthTable;
+	/**
+	 * The output tree.
+	 */
 	private BDD binaryDecitionTree;
+	/**
+	 * The factory for creating bdd items.
+	 */
 	private BDDFactory bddFactory;
-	private BDD bdd;
 
 	/**
 	 * Load Truth table through driver
@@ -41,14 +49,14 @@ public class Solution {
 
 	public void run() {
 		bddFactory = BDDFactoryImpl.init();
-		bdd = bddFactory.createBDD();
+		binaryDecitionTree = bddFactory.createBDD();
 
 		// Creating input port list for always referencing the same port in the code
 		EList<InputPort> inputPortList = new BasicEList<>();
 		truthTable.getPorts().forEach(port -> {
 			if (port instanceof ttc2019.metamodels.tt.InputPort){
 				InputPort inputPort = bddFactory.createInputPort();
-				inputPort.setOwner(bdd);
+				inputPort.setOwner(binaryDecitionTree);
 				inputPort.setName(port.getName());
 				inputPortList.add(inputPort);
 			}
@@ -59,7 +67,7 @@ public class Solution {
 		truthTable.getPorts().forEach(port -> {
 			if (port instanceof OutputPortImpl){
 				OutputPort outputPort = bddFactory.createOutputPort();
-				outputPort.setOwner(bdd);
+				outputPort.setOwner(binaryDecitionTree);
 				outputPort.setName(port.getName());
 				outPortList.add(outputPort);
 			}
@@ -71,15 +79,15 @@ public class Solution {
 		//Assign values to the Leafs
 		instanciateLeaf(tree, truthTable.getRows(), outPortList);
 
+		// Optimizing the tree, disabled because the validator can't validate an optimized tree.
 		//bdd = TreeOptimization.optimize(bdd);
-
-		DebugHelpers.printTree(tree);
-
-		//TODO optimized the tree with the reducing algorithm : https://www.cs.ox.ac.uk/people/james.worrell/lec5-2015.pdf
-
-		binaryDecitionTree = bdd;
 	}
 
+	/**
+	 * Create the tree and all the subTree, leaf will be initialize later. It's just the container.
+	 * @param inputPortList All the input port for creating a level for each of those.
+	 * @return A tree ready to be filled with values
+	 */
 	private Tree createTree(EList<InputPort> inputPortList) {
 		Tree finalTree = null;
 
@@ -88,21 +96,21 @@ public class Solution {
 
 		//This is the tree generation, without any optimisation, so all branch are computed.
 		for (InputPort port: inputPortList) {
-			if(bdd.getTree() == null){
+			//First iteration level. We set this tree as a root tree.
+			if(binaryDecitionTree.getTree() == null){
 
 				Subtree subtree = bddFactory.createSubtree();
 
-				//Set the tree port
 				subtree.setPort(port);
 
-				//It's the first so it's declared as the root tree
-				bdd.setTree(subtree);
-				//Adding to the last level deph tree for being able to use it at the next iteration.
+				binaryDecitionTree.setTree(subtree);
+
+				//Adding to the last level depth tree for being able to use it at the next iteration.
 				lastLevelTree.add(subtree);
 
 				finalTree = subtree;
 			} else {
-				//Initiating all the subtree of the last level
+				//For each other tree level;
 				List<Subtree> nextLastLevelTree = new ArrayList<>();
 				for (Subtree subTree: lastLevelTree) {
 
@@ -127,18 +135,28 @@ public class Solution {
 		return finalTree;
 	}
 
+	/**
+	 * Initialize all the leaf of the tree.
+	 * It's a recursive method. Each time we filter the row list and going down just with the interesting rows.
+	 * At the last level, only pertinent rows will be left for initializing the tree.
+	 * @param tree The tree with the leaf to initiate
+	 * @param rows The list of rows containing the pertinent ones for this level of iteration
+	 * @param outPortList The list of output port for linking the leaf ot those port.
+	 */
 	private void instanciateLeaf(Tree tree, EList<Row> rows, EList<OutputPort> outPortList) {
 		Subtree subTree = (Subtree) tree;
 
 		//If it's the last level.  NDLR : checking on forZero would have been the same
 		if(subTree.getTreeForOne() == null){
-
+			//Instanciate each leaf with the correct port.
+			//The port will tell us in which cell we have to look for knowing in which list we have to add the row.
 			rows.forEach(row -> row.getCells()
 					.stream()
 					.filter(cell -> cell.getPort().getName().equals(subTree.getPort().getName()))
 					.forEach( cell -> createLeaf(row, cell, subTree, outPortList)));
 
 		} else{
+			//Creating the row list for the both branch of the tree and then making a recursive call to the next tree level.
 			EList<Row> trueRows = new BasicEList<>();
 			EList<Row> falseRows = new BasicEList<>();
 
@@ -153,6 +171,13 @@ public class Solution {
 
 	}
 
+	/**
+	 * Assign a rows in the pertinent list depending of the value of the cell.
+	 * @param trueRows The list of rows concerning the true path
+	 * @param falseRows The lsit of rows concerning the false path
+	 * @param row The row to add
+	 * @param cell The cell related to the good port for knowing in which list we have to add the row
+	 */
 	private void assignInRows(EList<Row> trueRows, EList<Row> falseRows, Row row, Cell cell) {
 		if(cell.isValue()) {
 			trueRows.add(row);
@@ -161,6 +186,13 @@ public class Solution {
 		}
 	}
 
+	/**
+	 * Instantiate a leaf. That's the endpoint of the leaf initialization recursion
+	 * @param row The row of the truthtable related to this leaf
+	 * @param cell The cell of the parent port. Used for knowing if it's a left leaf or a right leaf.
+	 * @param subTree The parent subtree. Used for putting the leaf under
+	 * @param outPortList The output port list, used for linking the leaf output port to the right one.
+	 */
 	private void createLeaf(Row row, Cell cell, Subtree subTree, EList<OutputPort> outPortList) {
 		Leaf leaf = bddFactory.createLeaf();
 		for (Cell outputCell: row.getCells()){

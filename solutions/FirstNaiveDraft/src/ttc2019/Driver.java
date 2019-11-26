@@ -49,18 +49,18 @@ public class Driver {
 		repository.getPackageRegistry().put(TTPackage.eINSTANCE.getNsURI(), TTPackage.eINSTANCE);
 		repository.getPackageRegistry().put(BDDPackage.eINSTANCE.getNsURI(), BDDPackage.eINSTANCE);
 
-
+		//TODO uncomment to run through run.py
 		Model = System.getenv("Model");
 		ModelPath = System.getenv("ModelPath");
 		RunIndex = System.getenv("RunIndex");
 		Tool = System.getenv("Tool");
 
 
-		//To run directly from IDE
-		/*Model = "GeneratedI15O5Seed282316.ttmodel";
-		ModelPath = "../../models/"+Model;
-		RunIndex = System.getenv("RunIndex");
-		Tool = "FirstNaiveDraft";*/
+		//Walk around to run in IDE
+//		Model = "GeneratedI4O2Seed42.ttmodel";
+//		ModelPath = ExternalConfig.MODEL_PATH;
+//		RunIndex = System.getenv("RunIndex");
+//		Tool = "FirstNaiveDraft";
 
 		solution = new Solution();
 
@@ -90,7 +90,6 @@ public class Driver {
 		//solution.setOutputResource(outputResource);
 
 		stopwatch = System.nanoTime() - stopwatch;
-
 		report(BenchmarkPhase.Load);
 	}
 
