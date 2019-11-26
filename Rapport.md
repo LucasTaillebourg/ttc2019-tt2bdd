@@ -1,0 +1,6 @@
+  - instructions pour l'installation
+  - ce qui a ete fait et marche / ce qui n'a pas ete fait ne marche pas
+  - les choix (rappel si il y a eu choix il y avait au moins deux manieres de faire, decrirer les manieres, leurs avantages et inconvenients qui ont permis de choisir)
+  - ce que vous referiez differement
+  - ce qui pourrait etre ajoute
+  - points forts et points faibles de votre projet

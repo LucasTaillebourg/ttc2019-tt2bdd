@@ -1,18 +1,13 @@
- Rdv de présentation 0.25
-Lecture ces documents du contest 1
-Installation du projet/dependances python/gradle 1.75
-re-Installation sous linux jusqu' a pouvoir run.py 2
-Squelette + répartission des taches loder-solution 0.5
-tentative de fix finite number 5.5
-lecture papier solution atl 0.5
-etude du metamodel 0.6
-creation du projet buildable dans run.py 2
-driver pour initialiser la TT 0.5
-Outils de débug pour print les solutions 1
-Print solution de sortie 0.5
-leafReduction,3
-testReduction,2
-leafReduction debug pour xmi,3
+Type de tâche; temps en heure
+Rdvs; 1
+Lecture ces documents; 2
+Installation du projet/run.py; 10
+Creation d'un squelette qui s'intègere au sysytème de run;4
+Outils de débug;1
+Developpement d'une solution naive; 2
+Algorithme d'optimisation;9
+
+
 
 
 
