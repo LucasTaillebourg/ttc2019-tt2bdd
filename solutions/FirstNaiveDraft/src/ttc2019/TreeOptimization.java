@@ -4,6 +4,7 @@ import ttc2019.metamodels.bdd.*;
 import ttc2019.metamodels.bdd.impl.LeafImpl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +21,8 @@ public class TreeOptimization {
     public static void optimize(BDD bdd){
 
        leafReduction(bdd);
-       testReduction(bdd);
+      // testReduction(bdd);
+
 
     }
 
@@ -39,14 +41,15 @@ public class TreeOptimization {
                         .map(Assignment::getOwner).collect(Collectors.toList())
                 ));
 
-        //to make generic for trees
+
         while (!nodesAtCurrentLvl.isEmpty()){
+            System.out.println(nodesAtCurrentLvl);
             for(Tree currentNode : nodesAtCurrentLvl){
                 Subtree currParentOne = currentNode.getOwnerSubtreeForOne();
                 Subtree currParentZero = currentNode.getOwnerSubtreeForZero();
                 //If zero-branch parent points twice to leaf
                 if(currParentOne!= null){
-                    if( currParentOne.getTreeForZero().equals(currentNode)){
+                    if( currParentOne.getTreeForOne().equals(currentNode)){
                         deleteParent(currentNode);
                     }
                     else{
@@ -54,7 +57,7 @@ public class TreeOptimization {
                     }
                 }
                 if(currParentZero!= null){
-                    if( currParentZero.getTreeForOne().equals(currentNode)){
+                    if( currParentZero.getTreeForZero().equals(currentNode)){
                         deleteParent(currentNode);
                     }
                     else{
@@ -63,6 +66,8 @@ public class TreeOptimization {
                 }
 
             }
+            nodesAtParentLvl.removeAll(Collections.singletonList(null));
+            nodesAtCurrentLvl.clear();
             nodesAtCurrentLvl.addAll(nodesAtParentLvl);
             nodesAtParentLvl.clear();
         }
@@ -84,7 +89,6 @@ public class TreeOptimization {
     }
 
 
-
     /**
      * Remove duplicate leaves
      * @param bdd
@@ -93,22 +97,35 @@ public class TreeOptimization {
     private static  BDD leafReduction(BDD bdd){
         Leaf found;
         List<Leaf> uniqueLeaves = new ArrayList<>();
+        List<Assignment> assignementToDl = new ArrayList<>();
         for(Port port : bdd.getPorts()){
             if(port instanceof  OutputPort){
               for(Assignment assignment:  ((OutputPort) port).getAssignments()){
+
                   if (!uniqueLeaves.contains(assignment.getOwner())) {
                       found = getLeafIfContains(uniqueLeaves,assignment.getOwner());
                       if(found !=null){
-                          assignment.getOwner().getOwnerSubtreeForZero().setTreeForZero(found);
-                          assignment.getOwner().getOwnerSubtreeForOne().setTreeForOne(found);
-                          assignment.setOwner(found);
+                          //System.out.println(assignment.toString());
+                          if(assignment.getOwner().getOwnerSubtreeForZero()!= null){
+                              assignment.getOwner().getOwnerSubtreeForZero().setTreeForZero(found);
+                          }
+                          if(assignment.getOwner().getOwnerSubtreeForOne()!= null){
+                              assignment.getOwner().getOwnerSubtreeForOne().setTreeForOne(found);
+                          }
+                          //assignment.setOwner(found);
+                          assignementToDl.add(assignment);
                       }else{
+                          System.out.println(assignment);
+                          System.out.println(assignment.getOwner());
                           uniqueLeaves.add(assignment.getOwner());
                       }
                   }
               }
+              ((OutputPort) port).getAssignments().removeAll(assignementToDl);
+                assignementToDl.clear();
             }
         }
+        System.out.println(uniqueLeaves);
         return bdd;
     }
 

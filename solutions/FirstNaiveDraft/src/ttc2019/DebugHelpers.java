@@ -8,6 +8,9 @@ import ttc2019.metamodels.tt.Port;
 import ttc2019.metamodels.tt.Row;
 import ttc2019.metamodels.tt.TruthTable;
 
+/**
+ * Provides methods to print the truth table and the output bdd to check for corectness
+ */
 public  class DebugHelpers {
     public static void printTruthTable(TruthTable tt){
         for(Port label: tt.getPorts()){
@@ -35,7 +38,7 @@ public  class DebugHelpers {
             printTree(subtree.getTreeForZero());
         } else if (tree instanceof Leaf) {
             Leaf leaf = (Leaf) tree;
-            leaf.getAssignments().forEach(assignment -> System.out.println(assignment.getPort() + " : " +Boolean.toString(assignment.isValue())));
+            leaf.getAssignments().forEach(assignment -> System.out.println(assignment.toString() + assignment.getPort() + " : " +Boolean.toString(assignment.isValue())));
         }
     }
 }

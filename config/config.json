@@ -1,8 +1,9 @@
 {
-    "Tools": ["FirstNaiveDraft"],
+    "Tools": ["EMFSolutionATL","FirstNaiveDraft","Fulib"],
     "Models": [
         "GeneratedI4O2Seed42.ttmodel",
-        "GeneratedI8O2Seed68.ttmodel"
+        "GeneratedI8O2Seed68.ttmodel",
+        "GeneratedI8O4Seed68.ttmodel"
     ],
     "Runs": 5,
     "Timeout": 10000
