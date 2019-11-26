@@ -11,9 +11,16 @@
  
  Pour modifier les modèles utilisés: `config/config.json` 
  
- :warning: En cas d'erreurs "xx must be a finite number" supprimer le fichier `output/output.csv` 
- 
 * **Résultat**: Les diagrammes de comparaisons sont produits dans `diagrams`
+ 
+**/!\**
+
+* En cas d'erreurs "xx must be a finite number" supprimer le fichier `output/output.csv` 
+ 
+* En cas d'erreur `Command './gradlew installDist' returned non-zero exit status 1.` faire `gradle wrapper`
+
+ 
+
   
 # First Naive draft
 FirstNaiveDraft est un algorithme qui prend en entrée une Table de véritée et en sort un Arbre  binaire de décision.
@@ -21,6 +28,16 @@ FirstNaiveDraft est un algorithme qui prend en entrée une Table de véritée et
 Il existe également le début d'un algorithme d'optimisation de graphe qui n'est plus utilisé par la solution car il détruit la validitée de l'arbre.
 
 Dans l'idée nous souhaitions réaliser plusieurs algorithmes pour comparez leur performances mais nous avons perdu du temps lors de l'instalation de notre projet dans le système fourni par le concours (run.py)
+Evaluation de la solution:
+
+(+) Facile à comprendre
+
+(+) Produit un BDD valide pour tout les modèles proposés (validator.jar)
+
+( - ) Performance globale mauvaise (notement sur le calcul des feuilles).
+
+
+
 
 
 # Problèmes rencontrés
@@ -32,7 +49,5 @@ Dans l'idée nous souhaitions réaliser plusieurs algorithmes pour comparez leur
 # Retour sur le projet
 * Nous avons choisis d'utilisez le language Java car c'est le seul que nous maitrisions. Cependant, nous avons entre temps eut un module ou nous utilisions Kotlin et avec du recul ce dernier aurait été beaucoup plus élégant pour faire un algorithme fonctionnel.
 * Nous aurions dut travailler sur l'optimisation de la création de l'arbre de décision  au lieu de son optimisation car c'est la vitesse de trasphormation qui était jugée et non la beautée ce ce qui en sortait.
-* La performance est notamment mauvaise au moment du calcul des feuilles.
-
 
   
