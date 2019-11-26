@@ -6,8 +6,8 @@
     * R
  * **Lancement**: À partir du dossier ttc2019-tt2bdd : `./scripts/run.py ` 
  
- Par défaut ce script sera lancé sur les solutions EMFSolutionATL ( la pire), FirstNaiveDraft ( La nôtre) et Fulib ( la meilleur).
- Ils seront lancés sur 3 modèles exemples.
+ Par défaut ce script sera lancé sur les solutions FirstNaiveDraft ( La nôtre), Fulib ( la meilleur), ATLEMFTVMImproved (une bonne référence).
+ Ils seront lancés sur 4 modèles exemples.
  
  Pour modifier les modèles utilisés: `config/config.json` 
  
